@@ -20,39 +20,39 @@
 #include <stub.c>
 
 /*
-	Wishbone Test:
-		- Configures MPRJ lower 8-IO pins as outputs
-		- Checks counter value through the wishbone port
+    Wishbone Test:
+        - Configures MPRJ lower 8-IO pins as outputs
+        - Checks counter value through the wishbone port
 */
 
 void main()
 {
 
-	/* 
-	IO Control Registers
-	| DM     | VTRIP | SLOW  | AN_POL | AN_SEL | AN_EN | MOD_SEL | INP_DIS | HOLDH | OEB_N | MGMT_EN |
-	| 3-bits | 1-bit | 1-bit | 1-bit  | 1-bit  | 1-bit | 1-bit   | 1-bit   | 1-bit | 1-bit | 1-bit   |
-	Output: 0000_0110_0000_1110  (0x1808) = GPIO_MODE_USER_STD_OUTPUT
-	| DM     | VTRIP | SLOW  | AN_POL | AN_SEL | AN_EN | MOD_SEL | INP_DIS | HOLDH | OEB_N | MGMT_EN |
-	| 110    | 0     | 0     | 0      | 0      | 0     | 0       | 1       | 0     | 0     | 0       |
-	
-	 
-	Input: 0000_0001_0000_1111 (0x0402) = GPIO_MODE_USER_STD_INPUT_NOPULL
-	| DM     | VTRIP | SLOW  | AN_POL | AN_SEL | AN_EN | MOD_SEL | INP_DIS | HOLDH | OEB_N | MGMT_EN |
-	| 001    | 0     | 0     | 0      | 0      | 0     | 0       | 0       | 0     | 1     | 0       |
-	*/
+    /* 
+    IO Control Registers
+    | DM     | VTRIP | SLOW  | AN_POL | AN_SEL | AN_EN | MOD_SEL | INP_DIS | HOLDH | OEB_N | MGMT_EN |
+    | 3-bits | 1-bit | 1-bit | 1-bit  | 1-bit  | 1-bit | 1-bit   | 1-bit   | 1-bit | 1-bit | 1-bit   |
+    Output: 0000_0110_0000_1110  (0x1808) = GPIO_MODE_USER_STD_OUTPUT
+    | DM     | VTRIP | SLOW  | AN_POL | AN_SEL | AN_EN | MOD_SEL | INP_DIS | HOLDH | OEB_N | MGMT_EN |
+    | 110    | 0     | 0     | 0      | 0      | 0     | 0       | 1       | 0     | 0     | 0       |
+    
+     
+    Input: 0000_0001_0000_1111 (0x0402) = GPIO_MODE_USER_STD_INPUT_NOPULL
+    | DM     | VTRIP | SLOW  | AN_POL | AN_SEL | AN_EN | MOD_SEL | INP_DIS | HOLDH | OEB_N | MGMT_EN |
+    | 001    | 0     | 0     | 0      | 0      | 0     | 0       | 0       | 0     | 1     | 0       |
+    */
 
-	/* Set up the housekeeping SPI to be connected internally so	*/
-	/* that external pin changes don't affect it.			*/
+    /* Set up the housekeeping SPI to be connected internally so    */
+    /* that external pin changes don't affect it.           */
 
     reg_spi_enable = 1;
     reg_wb_enable = 1;
-	// reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
+    // reg_spimaster_config = 0xa002;   // Enable, prescaler = 2,
                                         // connect to housekeeping SPI
 
-	// Connect the housekeeping SPI to the SPI master
-	// so that the CSB line is not left floating.  This allows
-	// all of the GPIO pins to be used for user functions.
+    // Connect the housekeeping SPI to the SPI master
+    // so that the CSB line is not left floating.  This allows
+    // all of the GPIO pins to be used for user functions.
 
     reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
@@ -75,13 +75,25 @@ void main()
     reg_mprj_xfer = 1;
     while (reg_mprj_xfer == 1);
 
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+    reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 
     // Flag start of the test
-	reg_mprj_datal = 0xAB600000;
+    reg_mprj_datal = 0xAB600000;
 
-    reg_mprj_slave = 0x00002710;
-    if (reg_mprj_slave == 0x2B3D) {
+    reg_wb_enable = 1;
+    reg_mprj_slave_X = 10;
+    reg_wb_enable = 0;
+    reg_wb_enable = 1;
+    reg_mprj_slave_Y = 3;
+    reg_wb_enable = 0;
+    reg_wb_enable = 1;
+    long long p0 = reg_mprj_slave_P0;
+    reg_wb_enable = 0;
+    reg_wb_enable = 1;
+    long long p1 = reg_mprj_slave_P1;
+    
+    if (p0== 30 && p1==0) {
         reg_mprj_datal = 0xAB610000;
     }
 }
+

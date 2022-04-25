@@ -171,6 +171,19 @@ precheck:
 	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
 	@docker pull efabless/mpw_precheck:latest
 
+.PHONY: sta-verification
+sta-verification:
+	docker run -it -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
+		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
+		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
+		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
+		-e TOOLS=/opt/riscv32i \
+		-e DESIGNS=$(TARGET_PATH) \
+		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
+		-e GCC_PREFIX=riscv32-unknown-elf \
+		-e MCW_ROOT=$(MCW_ROOT) \
+		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest
+
 .PHONY: run-precheck
 run-precheck: check-pdk check-precheck
 	$(eval INPUT_DIRECTORY := $(shell pwd))
