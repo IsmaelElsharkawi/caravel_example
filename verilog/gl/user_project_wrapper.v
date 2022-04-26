@@ -54,8 +54,8 @@ module user_project_wrapper (user_clock2,
  input [3:0] wbs_sel_i;
 
 
- SPM_example mprj (.vccd1(vccd1),
-    .vssd1(vssd1),
+ SPM_example mprj (.VGND(vssd1),
+    .VPWR(vccd1),
     .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),
     .wbs_ack_o(wbs_ack_o),
