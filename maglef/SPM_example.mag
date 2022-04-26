@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1650917332
+timestamp 1650974811
 << obsli1 >>
 rect 1104 2159 178848 117521
 << obsm1 >>
@@ -243,30 +243,30 @@ rect 96768 2048 111648 26485
 rect 112128 2048 121197 26485
 rect 62619 443 121197 2048
 << labels >>
-rlabel metal4 s 4208 2128 4528 117552 6 vccd1
-port 1 nsew power input
-rlabel metal4 s 34928 2128 35248 117552 6 vccd1
-port 1 nsew power input
-rlabel metal4 s 65648 2128 65968 117552 6 vccd1
-port 1 nsew power input
-rlabel metal4 s 96368 2128 96688 117552 6 vccd1
-port 1 nsew power input
-rlabel metal4 s 127088 2128 127408 117552 6 vccd1
-port 1 nsew power input
-rlabel metal4 s 157808 2128 158128 117552 6 vccd1
-port 1 nsew power input
-rlabel metal4 s 19568 2128 19888 117552 6 vssd1
-port 2 nsew ground input
-rlabel metal4 s 50288 2128 50608 117552 6 vssd1
-port 2 nsew ground input
-rlabel metal4 s 81008 2128 81328 117552 6 vssd1
-port 2 nsew ground input
-rlabel metal4 s 111728 2128 112048 117552 6 vssd1
-port 2 nsew ground input
-rlabel metal4 s 142448 2128 142768 117552 6 vssd1
-port 2 nsew ground input
-rlabel metal4 s 173168 2128 173488 117552 6 vssd1
-port 2 nsew ground input
+rlabel metal4 s 19568 2128 19888 117552 6 VGND
+port 1 nsew ground input
+rlabel metal4 s 50288 2128 50608 117552 6 VGND
+port 1 nsew ground input
+rlabel metal4 s 81008 2128 81328 117552 6 VGND
+port 1 nsew ground input
+rlabel metal4 s 111728 2128 112048 117552 6 VGND
+port 1 nsew ground input
+rlabel metal4 s 142448 2128 142768 117552 6 VGND
+port 1 nsew ground input
+rlabel metal4 s 173168 2128 173488 117552 6 VGND
+port 1 nsew ground input
+rlabel metal4 s 4208 2128 4528 117552 6 VPWR
+port 2 nsew power input
+rlabel metal4 s 34928 2128 35248 117552 6 VPWR
+port 2 nsew power input
+rlabel metal4 s 65648 2128 65968 117552 6 VPWR
+port 2 nsew power input
+rlabel metal4 s 96368 2128 96688 117552 6 VPWR
+port 2 nsew power input
+rlabel metal4 s 127088 2128 127408 117552 6 VPWR
+port 2 nsew power input
+rlabel metal4 s 157808 2128 158128 117552 6 VPWR
+port 2 nsew power input
 rlabel metal2 s 846 0 902 800 6 wb_clk_i
 port 3 nsew signal input
 rlabel metal2 s 2502 0 2558 800 6 wb_rst_i
@@ -483,7 +483,7 @@ port 108 nsew signal input
 string FIXED_BBOX 0 0 180000 120000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 10649036
+string GDS_END 10654836
 string GDS_FILE /mnt/c/Users/Ismael/Efabless-wsl/caravel_tutorial/caravel_example/openlane/SPM_example/runs/SPM_example/results/finishing/SPM_example.magic.gds
 string GDS_START 476124
 << end >>

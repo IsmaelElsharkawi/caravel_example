@@ -7,35 +7,7 @@ MACRO SPM_example
   FOREIGN SPM_example ;
   ORIGIN 0.000 0.000 ;
   SIZE 900.000 BY 600.000 ;
-  PIN vccd1
-    DIRECTION INPUT ;
-    USE POWER ;
-    PORT
-      LAYER met4 ;
-        RECT 21.040 10.640 22.640 587.760 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 174.640 10.640 176.240 587.760 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 328.240 10.640 329.840 587.760 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 481.840 10.640 483.440 587.760 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 635.440 10.640 637.040 587.760 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 789.040 10.640 790.640 587.760 ;
-    END
-  END vccd1
-  PIN vssd1
+  PIN VGND
     DIRECTION INPUT ;
     USE GROUND ;
     PORT
@@ -62,7 +34,35 @@ MACRO SPM_example
       LAYER met4 ;
         RECT 865.840 10.640 867.440 587.760 ;
     END
-  END vssd1
+  END VGND
+  PIN VPWR
+    DIRECTION INPUT ;
+    USE POWER ;
+    PORT
+      LAYER met4 ;
+        RECT 21.040 10.640 22.640 587.760 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 174.640 10.640 176.240 587.760 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 328.240 10.640 329.840 587.760 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 481.840 10.640 483.440 587.760 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 635.440 10.640 637.040 587.760 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 789.040 10.640 790.640 587.760 ;
+    END
+  END VPWR
   PIN wb_clk_i
     DIRECTION INPUT ;
     USE SIGNAL ;
